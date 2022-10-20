@@ -17,7 +17,7 @@
                 <option value="из B в A">из B в A</option>
                 <option value="из A в B и обратно в А">из A в B и обратно в А</option>
             </select>
-            <select name="time" id="time" class="form-select time-select time-select_hidden" onchange="selectTimeHandle(this)">
+            <select name="time" id="time" class="form-select time-select time-select_hidden" onchange="selectTimeHandle(this); renderBackTime(this)">
                 <option selected disabled>Выберите время</option>
                 <option value="18:00(из A в B)">18:00 (из A в B)</option>
                 <option value="18:30(из A в B)">18:30 (из A в B)</option>

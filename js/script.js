@@ -11,6 +11,7 @@ const localTime = `${date.getHours()}` + `:` + `${date.getMinutes()}`;
 
 
 const timeBackOption = document.createElement('option');
+let timeBackOptionsArr = [];
 
 console.log((date.getTimezoneOffset() / 60) * -1);
 
@@ -42,11 +43,31 @@ const filterTime = timeSelect => {
     } else if (ticketRoute.value === 'из A в B и обратно в А') {
         Array.from(timeSelect).forEach(elem => {
             elem.value.replace(/[:()\d]/g, '') === 'из B в A' || elem.value === defaultTime
-                ? (elem.setAttribute('disabled', true), console.log(elem.textContent))
-                : elem.removeAttribute('disabled')
+                ? elem.setAttribute('disabled', true)
+                : elem.removeAttribute('disabled');
         })
+    }    
+}
 
-        
-    }
+const renderBackTime = timeSelect => {
+    timeBackOptionsArr = [];
+    Array.from(timeSelect).forEach(elem => {
+        elem.value.replace(/[^:\d]/g, '') >= timeSelect.value
+            ? (
+                timeBackOption.innerText = elem.value.replace(/[^:\d]/g, ''),
+                timeBackOptionsArr.push(timeBackOption),
+                console.log(timeBackOption)
+            )
+            : console.log('net');
+    })
     
+    // timeBackOptionsArr.forEach(elem => {
+    //     console.log(elem);
+    // })
+
+    
+}
+
+const selectTimeHandle = timeSelect => {
+    filterTime(ticketTime)
 }
