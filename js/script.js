@@ -11,7 +11,7 @@ const localTime = `${date.getHours()}` + `:` + `${date.getMinutes()}`;
 
 
 const timeBackOption = document.createElement('option');
-let timeBackOptionsArr = [];
+let elemClone;
 
 console.log((date.getTimezoneOffset() / 60) * -1);
 
@@ -50,21 +50,24 @@ const filterTime = timeSelect => {
 }
 
 const renderBackTime = timeSelect => {
-    timeBackOptionsArr = [];
+    let timeBackOptionsArr = [];
+
+    while (ticketTimeBack.children[1]) {
+        ticketTimeBack.removeChild(ticketTimeBack.children[1])
+    }
+
     Array.from(timeSelect).forEach(elem => {
-        elem.value.replace(/[^:\d]/g, '') >= timeSelect.value
+        elem.value.replace(/[^:\d]/g, '') >= timeSelect.value && elem.value.replace(/[:\d]/g, '') != '(из A в B)'
             ? (
-                timeBackOption.innerText = elem.value.replace(/[^:\d]/g, ''),
-                timeBackOptionsArr.push(timeBackOption),
-                console.log(timeBackOption)
+                elemClone = elem.cloneNode(true),
+                elemClone.removeAttribute('disabled'),
+
+                timeBackOptionsArr.push(elemClone)
             )
             : console.log('net');
     })
-    
-    // timeBackOptionsArr.forEach(elem => {
-    //     console.log(elem);
-    // })
 
+    ticketTimeBack.append(...timeBackOptionsArr);
     
 }
 
