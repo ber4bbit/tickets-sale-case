@@ -7,18 +7,9 @@ const singleRoutePrice = 700;
 const doubleRoutePrice = 1200;
 const singleRouteDuration = 50;
 const date = new Date();
-const localTime = `${date.getHours()}` + `:` + `${date.getMinutes()}`;
-
-let from_A_to_B_arr = [];
-let from_B_to_A_arr = [];
-
-Array.from(ticketTime.children).forEach(elem => {
-    if (elem.value.replace(/[:()\d]/g, '') === 'из A в B') from_A_to_B_arr.push(elem)
-    else if (elem.value.replace(/[:()\d]/g, '') === 'из B в A') from_B_to_A_arr.push(elem);
-})
 
 const selectRouteHandle = routeSelect => {
-    filterTime(ticketTime)
+    addOptions(ticketTime)
 
     routeSelect.value != defaultRoute
         ? ticketTime.classList.remove('time-select_hidden')
@@ -27,11 +18,9 @@ const selectRouteHandle = routeSelect => {
     routeSelect.value === 'из A в B и обратно в А'
         ? ticketTimeBack.classList.remove('time-select_hidden')
         : ticketTimeBack.classList.add('time-select_hidden');
-
-    
 }
 
-const filterTime = timeSelect => {
+const addOptions = timeSelect => {
     if (ticketRoute.value === 'из A в B') {
         while (timeSelect.children[1]) timeSelect.removeChild(timeSelect.children[1])
         timeSelect.append(...fromAtoB);
@@ -42,27 +31,6 @@ const filterTime = timeSelect => {
         while (timeSelect.children[1]) timeSelect.removeChild(timeSelect.children[1])
         timeSelect.append(...fromBtoA);
     }
-
-    // while (document.querySelector('.tickets-wrapper').children[1]) document.querySelector('.tickets-wrapper').removeChild(document.querySelector('.tickets-wrapper').children[1])
-
-    // if (ticketRoute.value === 'из A в B') {
-    //     let timeList = document.createElement('select');
-    //     timeList.className = 'form-select time-select';
-
-    //     fromAtoB.forEach(elem => {
-    //         let timeOption = document.createElement('option');
-    //         timeOption.innerText = elem.time;
-    //         timeList.appendChild(timeOption);
-    //     })
-
-    //     document.querySelector('.tickets-wrapper').appendChild(timeList);
-        
-
-    // } 
-    // else if (ticketRoute.value === 'из B в A') {
-    //     timeSelect.append(...fromBtoA);
-    // } else timeSelect.append(...fromBtoA);
-      
 }
 
 const renderBackTime = timeSelect => {
@@ -71,20 +39,19 @@ const renderBackTime = timeSelect => {
 
     while (ticketTimeBack.children[1]) ticketTimeBack.removeChild(ticketTimeBack.children[1])
 
+    //TODO: Надо сделать сравнение с учетом смены часового пояса
+
     fromBtoA.forEach(elem => {
-        elem.value.replace(/[^:\d]/g, '') > timeSelect.value
+        elem.value > timeSelect.value
             ? (
                 elemClone = elem.cloneNode(true),
                 timeBackOptionsArr.push(elemClone)
             )
             : null
-        
-        
     })
+
     ticketTimeBack.append(...timeBackOptionsArr);
 }
-
-
 
 const selectTimeHandle = timeSelect => {
     // filterTime(ticketTime)
