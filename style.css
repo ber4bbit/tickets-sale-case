@@ -1,0 +1,22 @@
+.tickets-wrapper {
+    width: 50%;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 48px 0;
+}
+
+.form-select {
+    margin-bottom: 25px;
+}
+
+.form-select:last-child {
+    margin-bottom: 0;
+}
+
+.time-select {
+    display: block !important;
+}
+
+.time-select_hidden {
+    display: none !important;
+}
