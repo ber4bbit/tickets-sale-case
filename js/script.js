@@ -6,7 +6,6 @@ const defaultTime = 'Выберите время';
 const singleRoutePrice = 700;
 const doubleRoutePrice = 1200;
 const singleRouteDuration = 50;
-const date = new Date();
 
 const selectRouteHandle = routeSelect => {
     addOptions(ticketTime)
@@ -53,6 +52,6 @@ const renderBackTime = timeSelect => {
     ticketTimeBack.append(...timeBackOptionsArr);
 }
 
-const selectTimeHandle = timeSelect => {
+const selectTimeHandle = () => {
     // filterTime(ticketTime)
 }

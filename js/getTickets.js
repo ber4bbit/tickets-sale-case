@@ -3,6 +3,14 @@ let fromBtoA = [];
 
 const defaultTimeZone = 3;
 const userTimeZone = new Date().getTimezoneOffset() / 60 * -1;
+
+
+
+
+
+
+
+
 const differenceTimeZone = () => {
     return userTimeZone > defaultTimeZone
         ? userTimeZone - defaultTimeZone
@@ -10,6 +18,12 @@ const differenceTimeZone = () => {
 }
 
 const changeTimeZone = (timeArr) => {
+
+    let time = new Date();
+    time.setHours(Math.trunc((timeArr[0].time.replace(/:/g, '') / 100)));
+    time.setMinutes(timeArr[0].time.replace(/:/g, '') % 100);
+
+
     timeArr.forEach(elem => {
         let hours = Math.trunc((elem.time.replace(/:/g, '') / 100) + differenceTimeZone());
         let minutes = elem.time.replace(/:/g, '') % 100;
@@ -28,6 +42,15 @@ const changeTimeZone = (timeArr) => {
             ? fromAtoB.push(option)
             : fromBtoA.push(option)
     })
+
+
+    const userTz = moment.tz.guess();
+    let momentTime = moment();
+    momentTime.hour(Math.trunc((timeArr[0].time.replace(/:/g, '') / 100)));
+    momentTime.minute(timeArr[0].time.replace(/:/g, '') % 100);
+    momentTime.tz.setDefault('Europe/Moscow')
+
+    console.log(momentTime.format('HH:mm'));
 }
 
 const getData = async () => {
