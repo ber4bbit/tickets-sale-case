@@ -3,6 +3,7 @@
     height: 100vh;
     margin: 0 auto;
     padding: 48px 0;
+    text-align: center;
 }
 
 .form-select {
@@ -17,6 +18,12 @@
     display: block !important;
 }
 
-.time-select_hidden {
-    display: none !important;
+.ticket-count-wrapper {
+    display: flex;
+
+    justify-content: center;
+}
+
+.ticket-count-wrapper input {
+    width: 40%;
 }

@@ -11,23 +11,31 @@
 <body>
     <main class="container">
         <div class="tickets-wrapper">
-            <select name="route" id="ticket-route" class="form-select" onchange="ticketTimeSelectHandle(this);">
-                <option selected disabled>Выберите пункт назначения</option>
-                <option value="из A в B">из A в B</option>
-                <option value="из B в A">из B в A</option>
-                <option value="из A в B и обратно в А">из A в B и обратно в А</option>
-            </select>
-            <select name="time" id="ticket-time" class="form-select time-select time-select_hidden" onchange="renderBackTime(this)">
-                <option selected disabled>Выберите время отправления в B</option>
-            </select>
-            <select name="back-time" id="ticket-back-time" class="form-select time-select_hidden">
-                <option selected disabled>Выберите время отправления обратно в A</option>
-            </select>
+            <form action="" class="mb-3" onchange="calculateBtnHandle()">
+                <select name="route" id="ticket-route" class="form-select" onchange="ticketTimeSelectHandle(this)">
+                    <option selected disabled>Выберите пункт назначения</option>
+                    <option value="из A в B">из A в B</option>
+                    <option value="из B в A">из B в A</option>
+                    <option value="из A в B и обратно в А">из A в B и обратно в А</option>
+                </select>
+                <select name="time" id="ticket-time" class="form-select time-select visually-hidden" onchange="renderBackTime(this)">
+                    <option selected disabled>Выберите время отправления в B</option>
+                </select>
+                <select name="back-time" id="ticket-back-time" class="form-select visually-hidden" onchange="ticketBackTimeSelectHandle(this)">
+                    <option selected disabled>Выберите время отправления обратно в A</option>
+                </select>
+                <div class="ticket-count-wrapper">
+                    <input type="text" class="form-control me-3" id="ticket-count" placeholder="Введите количество билетов">
+                    <button type="button" class="btn btn-primary" id="btn-calculate" disabled>Посчитать</button>
+                </div>
+            </form>
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.14/moment-timezone-with-data.min.js"></script>
     <script src="./js/getTickets.js"></script>
+    <script src="./js/consts.js"></script>
+    <script src="./js/handlers.js"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>

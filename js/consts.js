@@ -1,0 +1,12 @@
+const ticketRoute = document.getElementById('ticket-route');
+const ticketTime = document.getElementById('ticket-time');
+const ticketBackTime = document.getElementById('ticket-back-time');
+const ticketCount = document.getElementById('ticket-count');
+const calculateBtn = document.getElementById('btn-calculate');
+const defaultRoute = 'Выберите пункт назначения';
+const defaultTime = 'Выберите время отправления в B';
+const defaultBackTime = 'Выберите время отправления обратно в A';
+const singleRoutePrice = 700;
+const doubleRoutePrice = 1200;
+const singleRouteDuration = '50 минут';
+const doubleRouteDuration = '1 час 40 минут';
